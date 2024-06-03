@@ -9,14 +9,14 @@ def list_file_of_dir(dir):
     for file in list_files:
         print(file)
 
-model = tf.keras.models.load_model('my_model.h5')
+model = tf.keras.models.load_model('rps.h5')
 
 if __name__ == "__main__":
     while(1):
-        usr_dir_choose = input("Please input the directory you want to list: ")
+        usr_dir_choose = input("Please input the directory you want to list(scissors/rock/paper): ")
         list_file_of_dir("./rps-test-set/" + usr_dir_choose)
 
-        usr_file_choose = input("Please input the file you want to predict: ")
+        usr_file_choose = input("Please input the file you want to predict (paste his name here):")
         path = "./rps-test-set/" + usr_dir_choose + "/" + usr_file_choose
         print(path)
         img = image.load_img(path, target_size=(150, 150))
