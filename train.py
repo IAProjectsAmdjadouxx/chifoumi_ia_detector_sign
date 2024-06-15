@@ -7,7 +7,10 @@ from keras_preprocessing import image
 from keras_preprocessing.image import ImageDataGenerator
 import numpy as np
 from keras.preprocessing import image
+from tensorflow.keras.callbacks import TensorBoard
+from time import time
 
+tensorboard=TensorBoard(log_dir="logs/{}".format(time()))
 NUMBER_TRY = 14
 
 rock_dir = os.path.join('./rps/rock')
@@ -78,21 +81,6 @@ model.summary()
 
 model.compile(loss = 'categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 
-history = model.fit(train_generator, epochs=NUMBER_TRY, validation_data = validation_generator, verbose = 1)
+model.fit(train_generator, epochs=NUMBER_TRY, validation_data = validation_generator, verbose = 1, callbacks=[tensorboard])
 
 model.save("rps.h5")
-
-acc = history.history['accuracy']
-val_acc = history.history['val_accuracy']
-loss = history.history['loss']
-val_loss = history.history['val_loss']
-
-epochs = range(len(acc))
-
-plt.plot(epochs, acc, 'r', label='Training accuracy')
-plt.plot(epochs, val_acc, 'b', label='Validation accuracy')
-plt.title('Training and validation accuracy')
-plt.legend(loc=0)
-plt.figure()
-
-plt.show()
