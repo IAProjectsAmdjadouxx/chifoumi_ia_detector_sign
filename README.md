@@ -1,4 +1,4 @@
-## chifoumi_ai_detector_sign
+## chifoumi_ai
 
 A CNN which can identify on an image if you made a rock, a paper, or a scissor.
 
